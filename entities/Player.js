@@ -8,6 +8,8 @@ class Player extends Movable {
         this.height = height;
         this.width = width;
         this.color = color;
+        this.jumpsAvailable = 3;
+        this.canJump = true;
     }
 }
 

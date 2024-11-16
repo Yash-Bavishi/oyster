@@ -22,3 +22,8 @@
 ```math
 jump = (force x weight) / (mass x gravity)
 ```
+
+- Player needs to jumps 3 times max 
+  - 1st jump 10px
+  - 2nd jump 5px
+  - 3rd Jump 2px

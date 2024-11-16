@@ -41,6 +41,8 @@ class Game {
 
             if (player.y + player.height >= this.ctx.canvas.height) {
                 player.y = this.ctx.canvas.height - player.height;
+                // Remoeve this
+                player.jumpsAvailable = 3
             };
 
             if (player.x <= 0) {
@@ -56,15 +58,13 @@ class Game {
             for (let surface of this.surfaces) {
                 // Check if the player is standing on a platform (a rectangle)
                 if (surface.contains(player.x, player.y, player.width, player.height) && (surface.y - player.height) >= 0) {
-                    console.log('contains')
                     player.y = surface.y - player.height
+                    player.jumpsAvailable = 3
                 }
                 if (surface.isOnLeft(player.x, player.y, player.width, player.height)) {
-                    console.log('hit left')
                     player.x = surface.x + surface.width
                 }
                 if (surface.isOnRight(player.x, player.y, player.width, player.height)) {
-                    console.log('hit right')
                     player.x = surface.x - player.width
                 }
                 if (surface.hasHitSide(player.x, player.y, player.width, player.height)) {

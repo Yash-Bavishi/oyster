@@ -41,11 +41,8 @@ function gameLoop(timestamp) {
         // Update and draw your game
         game.updateState(960, 540, map)
     }
-
     requestAnimationFrame(gameLoop);
 }
-
-requestAnimationFrame(gameLoop);
 
 window.onload = () => {
     // setInterval(() => game.updateSate(960, 540, map), 50)
@@ -53,6 +50,7 @@ window.onload = () => {
 }
 
 document.addEventListener('keyup', (e) => {
+    if (e.key) p1.canJump = true;
     delete map[e.key]
 })
 
