@@ -1,20 +1,20 @@
 class Movable {
 
-   static moveUp(p) {
+  static moveUp(p) {
     p.y -= 20;
-   }
+  }
 
-  static moveDown(p)  {
+  static moveDown(p) {
     p.y += 10;
-   } 
+  }
 
-  static moveLeft(p)  {
+  static moveLeft(p) {
     p.x -= 10;
-   } 
+  }
 
-  static moveRight(p)  {
+  static moveRight(p) {
     p.x += 10;
-   } 
+  }
 
 
 }

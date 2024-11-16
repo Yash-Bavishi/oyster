@@ -25,18 +25,18 @@ class Game {
     getPlayerPositions(keyMaps) {
         const keys = Object.keys(keyMaps)
         console.log('THIS', keyMaps)
-        keys.forEach((key) => { 
+        keys.forEach((key) => {
             if (typeof keyMaps[key] === 'function') {
                 keyMaps[key](this.players[0]);
             }
-        } )
+        })
     }
 
     applyGravity(y_pos) {
         var gravity = 10;
         return y_pos += gravity;
     }
-    
+
 }
 
 export default Game;

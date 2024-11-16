@@ -1,6 +1,6 @@
 import Game from "./entities/Game.js";
 import Movable from "./entities/Movable.js";
-import Player  from "./entities/Player.js";
+import Player from "./entities/Player.js";
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
@@ -10,24 +10,24 @@ var p1 = new Player('red', 80, 100, 70, 70);
 var p2 = new Player('blue', 700, 100, 70, 70);
 
 const game = new Game(ctx, p1, p2);
-var map = {} 
+var map = {}
 
 
 
 document.addEventListener('keydown', (e) => {
-    switch(e.key) {
+    switch (e.key) {
         case 'w':
             map[e.key] = Movable.moveUp;
-            break;;
+            break;
         case 's':
             map[e.key] = Movable.moveDown;
-            break;;
+            break;
         case 'd':
             map[e.key] = Movable.moveRight;
-            break;;
+            break;
         case 'a':
             map[e.key] = Movable.moveLeft;
-            break;;
+            break;
     }
 })
 

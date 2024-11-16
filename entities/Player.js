@@ -1,6 +1,6 @@
 import Movable from "./Movable.js";
 
-class Player extends Movable{
+class Player extends Movable {
     constructor(color, x, y, height, width) {
         super();
         this.x = x;
@@ -12,4 +12,4 @@ class Player extends Movable{
 }
 
 
-export default Player ;
+export default Player;
