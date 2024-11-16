@@ -18,6 +18,25 @@ class Game {
             this.ctx.fillStyle = player.color;
             this.getPlayerPositions(keyMaps)
             player.y = this.applyGravity(player.y)
+
+            // Checking if the player is going outside canvas
+            
+            if (player.y <= 0) {
+                player.y = 0;
+            };
+
+            if (player.y + player.height >= this.ctx.canvas.height) {
+                player.y = this.ctx.canvas.height - player.height;
+            };
+            
+            if (player.x <= 0) {
+                player.x = 0;
+            }
+
+            if (player.x + player.width >= this.ctx.canvas.width){
+                player.x = this.ctx.canvas.width - player.width;
+            }
+
             this.ctx.fillRect(player.x, player.y, player.width, player.height);
         });
     }

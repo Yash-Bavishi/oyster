@@ -32,7 +32,7 @@ document.addEventListener('keydown', (e) => {
 })
 
 window.onload = () => {
-    setInterval(() => game.updateSate(960, 540, map), 300)
+    setInterval(() => game.updateSate(960, 540, map), 50)
 }
 
 document.addEventListener('keyup', (e) => {
