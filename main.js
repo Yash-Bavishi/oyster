@@ -31,8 +31,25 @@ document.addEventListener('keydown', (e) => {
     }
 })
 
+let lastTime = 0;
+const fps = 60;
+const interval = 1000 / fps;
+
+function gameLoop(timestamp) {
+    if (timestamp - lastTime >= interval) {
+        lastTime = timestamp;
+        // Update and draw your game
+        game.updateState(960, 540, map)
+    }
+
+    requestAnimationFrame(gameLoop);
+}
+
+requestAnimationFrame(gameLoop);
+
 window.onload = () => {
-    setInterval(() => game.updateSate(960, 540, map), 50)
+    // setInterval(() => game.updateSate(960, 540, map), 50)
+    requestAnimationFrame(gameLoop);
 }
 
 document.addEventListener('keyup', (e) => {

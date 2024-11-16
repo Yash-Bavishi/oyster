@@ -1,16 +1,31 @@
+import Surface from "./Surface.js";
+
+
 // Maintains the Game memory
 class Game {
     constructor(ctx, p1, p2) {
         /** @type {CanvasRenderingContext2D} */
         this.ctx = ctx;
         this.players = [p1, p2];
+
+        // Example surfaces (platforms and walls)
+        this.surfaces = [
+            new Surface(this.ctx, 100, 500, 200, 20, "green"), // Platform
+            new Surface(this.ctx, 400, 400, 50, 20, "blue"),  // Platform
+            new Surface(this.ctx, 0, 550, this.ctx.canvas.width, 50, "brown"), // Bottom wall
+            //new Surface(this.ctx, 0, 0, 50, this.ctx.canvas.height, "brown"), // Left wall
+            new Surface(this.ctx, 900, 0, 50, this.ctx.canvas.height, "brown") // Right wall
+        ];
     }
 
     // width and height of canvas
-    updateSate(width, height, keyMaps) {
+    updateState(width, height, keyMaps) {
         /** @type {CanvasRenderingContext2D} */
         this.ctx.clearRect(0, 0, width, height);
         this.drawPlayerPositions(keyMaps);
+
+        // Draw each surface (platform/wall)
+        this.surfaces.forEach(surface => surface.draw(this.ctx));
     }
 
     drawPlayerPositions(keyMaps) {
@@ -20,7 +35,6 @@ class Game {
             player.y = this.applyGravity(player.y)
 
             // Checking if the player is going outside canvas
-            
             if (player.y <= 0) {
                 player.y = 0;
             };
@@ -28,14 +42,37 @@ class Game {
             if (player.y + player.height >= this.ctx.canvas.height) {
                 player.y = this.ctx.canvas.height - player.height;
             };
-            
+
             if (player.x <= 0) {
                 player.x = 0;
             }
 
-            if (player.x + player.width >= this.ctx.canvas.width){
+            if (player.x + player.width >= this.ctx.canvas.width) {
                 player.x = this.ctx.canvas.width - player.width;
             }
+
+
+
+            for (let surface of this.surfaces) {
+                // Check if the player is standing on a platform (a rectangle)
+                if (surface.contains(player.x, player.y, player.width, player.height) && (surface.y - player.height) >= 0) {
+                    console.log('contains')
+                    player.y = surface.y - player.height
+                }
+                if (surface.isOnLeft(player.x, player.y, player.width, player.height)) {
+                    console.log('hit left')
+                    player.x = surface.x + surface.width
+                }
+                if (surface.isOnRight(player.x, player.y, player.width, player.height)) {
+                    console.log('hit right')
+                    player.x = surface.x - player.width
+                }
+                if (surface.hasHitSide(player.x, player.y, player.width, player.height)) {
+                    //console.log('hit side')
+                }
+
+            }
+
 
             this.ctx.fillRect(player.x, player.y, player.width, player.height);
         });
@@ -43,7 +80,6 @@ class Game {
 
     getPlayerPositions(keyMaps) {
         const keys = Object.keys(keyMaps)
-        console.log('THIS', keyMaps)
         keys.forEach((key) => {
             if (typeof keyMaps[key] === 'function') {
                 keyMaps[key](this.players[0]);
