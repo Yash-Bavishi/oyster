@@ -15,3 +15,10 @@
 
 - Game will continously check for keyboard strokes.
   - It will be a `dictionary` with key being the stroke and value being the function
+
+
+### Jump 
+
+```math
+jump = (force x weight) / (mass x gravity)
+```
