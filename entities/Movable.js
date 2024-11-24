@@ -1,38 +1,26 @@
 class Movable {
 
-  static moveUp(p) {
-    console.log("hi", p.canJump, p.jumpsAvailable);
-      if (p.canJump) {
-      switch (p.jumpsAvailable) {
-        case 3:
-          p.y -= 200;
-          p.jumpsAvailable = p.jumpsAvailable - 1;
-          break;
-        case 2:
-          p.y -= 210;
-          p.jumpsAvailable = p.jumpsAvailable - 1;
-          break;
-        case 1:
-          p.y -= 250;
-          p.jumpsAvailable = p.jumpsAvailable - 1;
-          break;
+  static jump(p) {
+    const destPosition = p.y - 150;
+    if (p.jumpsAvailable != 0) {
+      while (p.y >= destPosition) {
+        p.y -= p.velocityY;
       }
-      p.canJump = false;
+      p.canJump = false
+      p.jumpsAvailable--;
     }
   }
-
   static moveDown(p) {
-    p.y += 10;
+    p.y += p.velocityY;
   }
 
   static moveLeft(p) {
-    p.x -= 10;
+    p.x -= p.velocityX;
   }
 
   static moveRight(p) {
-    p.x += 10;
+    p.x += p.velocityX;
   }
-
 
 }
 

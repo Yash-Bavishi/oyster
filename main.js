@@ -6,18 +6,16 @@ const ctx = canvas.getContext('2d');
 
 // for vscode to understand the type and provide autocomplete
 /** @type {CanvasRenderingContext2D} */
-var p1 = new Player('red', 80, 100, 70, 70);
-var p2 = new Player('blue', 700, 100, 70, 70);
+var p1 = new Player('red', 80, 100, 70, 70, 2, 30);
+var p2 = new Player('blue', 700, 100, 70, 70, 5, 3);
 
 const game = new Game(ctx, p1, p2);
 var map = {}
 
-
-
 document.addEventListener('keydown', (e) => {
     switch (e.key) {
         case 'w':
-            map[e.key] = Movable.moveUp;
+            map[e.key] = Movable.jump;
             break;
         case 's':
             map[e.key] = Movable.moveDown;

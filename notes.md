@@ -1,5 +1,8 @@
 # Notes
 
+## Purpose of the game 
+I want this game to be a bond between a family between `father` and `son`, 2 friends who hit nostalgia when talking about this game. My father and elder brother introduced me to computer I remember playing GTA vice city, Pooh and vinnie, contra 4 and so many games with them. I learned about computers from game and I want the same with `Oyster`. 
+
 - Yash:
     - `Game` will maintain the state of the game. only game can call update state
 
@@ -23,7 +26,11 @@
 jump = (force x weight) / (mass x gravity)
 ```
 
-- Player needs to jumps 3 times max 
-  - 1st jump 10px
-  - 2nd jump 5px
-  - 3rd Jump 2px
+- Current jump logic is actually wrong because canvas will redraw the shape at that positions rather than actual jumping and making player jump
+
+#### Jump algorthm
+
+PROBLEM 1 :- determine the 'w' is pressed (done)
+PROBLEM 2 :- For 100ms increase player position by 2px till player positions doesn't hit 10px (for now) 
+  - if it hits 10px stop going up
+  - so till timer doesn't hit 500ms the player will keep going up (implement this)

@@ -1,7 +1,7 @@
 import Movable from "./Movable.js";
 
 class Player extends Movable {
-    constructor(color, x, y, height, width) {
+    constructor(color, x, y, height, width, velocityX, velocityY) {
         super();
         this.x = x;
         this.y = y;
@@ -10,6 +10,8 @@ class Player extends Movable {
         this.color = color;
         this.jumpsAvailable = 3;
         this.canJump = true;
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
     }
 }
 
