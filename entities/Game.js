@@ -74,7 +74,7 @@ class Game {
         keys.forEach((key) => {
             if (typeof keyMaps[key] === 'function') {
                 if (this.players[0].canJump) {
-                    keyMaps[key](this.players[0], this.updateState, keyMaps);
+                    keyMaps[key](this.players[0], this.ctx);
                 }
             }
         })
