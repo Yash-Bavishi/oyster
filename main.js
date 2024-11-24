@@ -6,7 +6,7 @@ const ctx = canvas.getContext('2d');
 
 // for vscode to understand the type and provide autocomplete
 /** @type {CanvasRenderingContext2D} */
-var p1 = new Player('red', 80, 100, 70, 70, 2, 30);
+var p1 = new Player('red', 80, 100, 70, 70, 2, 3);
 var p2 = new Player('blue', 700, 100, 70, 70, 5, 3);
 
 const game = new Game(ctx, p1, p2);

@@ -10,22 +10,20 @@ class Game {
 
         // Example surfaces (platforms and walls)
         this.surfaces = [
-            new Surface(this.ctx, 100, 500, 200, 20, "green"), // Platform
-            new Surface(this.ctx, 400, 400, 50, 20, "blue"),  // Platform
-            new Surface(this.ctx, 0, 550, this.ctx.canvas.width, 50, "brown"), // Bottom wall
-            //new Surface(this.ctx, 0, 0, 50, this.ctx.canvas.height, "brown"), // Left wall
-            new Surface(this.ctx, 900, 0, 50, this.ctx.canvas.height, "brown") // Right wall
+            new Surface(this.ctx, 100, 400, 700, 20, "cyan"),  // Platform
         ];
+        this.playerCollided = 0;
     }
 
     // width and height of canvas
     updateState(width, height, keyMaps) {
+        console.log("GOD");
         /** @type {CanvasRenderingContext2D} */
         this.ctx.clearRect(0, 0, width, height);
         this.drawPlayerPositions(keyMaps);
-
         // Draw each surface (platform/wall)
         this.surfaces.forEach(surface => surface.draw(this.ctx));
+        this.getPlayerCollisions();
     }
 
     drawPlayerPositions(keyMaps) {
@@ -64,7 +62,6 @@ class Game {
                     player.x = surface.x - player.width
                 }
                 if (surface.hasHitSide(player.x, player.y, player.width, player.height)) {
-                    //console.log('hit side')
                     player.jumpsAvailable = 3;
                 }
             }
@@ -77,10 +74,25 @@ class Game {
         keys.forEach((key) => {
             if (typeof keyMaps[key] === 'function') {
                 if (this.players[0].canJump) {
-                    keyMaps[key](this.players[0]);
+                    keyMaps[key](this.players[0], this.updateState, keyMaps);
                 }
             }
         })
+    }
+
+    getPlayerCollisions() {
+        var p1 = this.players[0];
+        var p2 = this.players[1];
+        // Horizontal Collision
+        if (p1.x >= (p2.x - p2.width) && p2.x >= (p1.x - p1.width) && p1.y <= p2.y && p1.y >= (p2.y - p2.height) || (p1.y - p1.height > p2.y - p2.height) && p1.y - p1.height < p2.y){
+            console.log("Colliison Found")
+        }
+
+        // Vertical Collision
+        // if () {
+        //     console.log("vertical collision");
+        // }
+
     }
 
     applyGravity(y_pos) {
