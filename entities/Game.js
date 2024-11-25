@@ -17,7 +17,6 @@ class Game {
 
     // width and height of canvas
     updateState(width, height, keyMaps) {
-        console.log("GOD");
         /** @type {CanvasRenderingContext2D} */
         this.ctx.clearRect(0, 0, width, height);
         this.drawPlayerPositions(keyMaps);
@@ -30,7 +29,7 @@ class Game {
         this.players.forEach(player => {
             this.ctx.fillStyle = player.color;
             this.getPlayerPositions(keyMaps)
-            player.y = this.applyGravity(player.y)
+            // player.y = this.applyGravity(player.y)
 
             // Checking if the player is going outside canvas
             if (player.y <= 0) {
@@ -66,11 +65,17 @@ class Game {
                 }
             }
             this.ctx.fillRect(player.x, player.y, player.width, player.height);
+            if (this.players[0].jumpSize <= 50 && this.players[0].jumpSize != 0) this.players[0].jumpSize++;
         });
     }
 
     getPlayerPositions(keyMaps) {
         const keys = Object.keys(keyMaps)
+            if (this.players[0].jumpSize != 0 && this.players[0].jumpSize <=50) {
+            console.log("test", this.players[0].jumpSize)
+            this.players[0].y -= this.players[0].velocityY;
+            console.log("test", this.players[0].jumpSize)
+        } else {
         keys.forEach((key) => {
             if (typeof keyMaps[key] === 'function') {
                 if (this.players[0].canJump) {
@@ -78,14 +83,25 @@ class Game {
                 }
             }
         })
+        }
     }
 
     getPlayerCollisions() {
         var p1 = this.players[0];
         var p2 = this.players[1];
         // Horizontal Collision
-        if (p1.x >= (p2.x - p2.width) && p2.x >= (p1.x - p1.width) && p1.y <= p2.y && p1.y >= (p2.y - p2.height) || (p1.y - p1.height > p2.y - p2.height) && p1.y - p1.height < p2.y){
-            console.log("Colliison Found")
+        // if ((p1.x >= (p2.x - p2.width)) && (p2.x >= (p1.x - p1.width)) && (p1.y <= p2.y) && (p1.y >= (p2.y - p2.height)) || ((p1.y - p1.height) > (p2.y - p2.height)) && (p1.y - p1.height) < (p2.y)){
+        //     console.log("Colliison Found")
+        // }
+
+        if (((p1.x >= (p2.x - p2.width)) && (p2.x >= (p1.x - p1.width)))
+            && ((p1.y >= p2.y && p1.y - p1.height <= p2.y))
+        ) {
+            console.log("Tre")
+        }
+
+        if ((p1.y >= p2.y && p1.y - p1.height <= p2.y)) {
+            console.log("ok")
         }
 
         // Vertical Collision

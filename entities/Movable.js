@@ -1,14 +1,13 @@
 class Movable {
 
   static jump(p, ctx) {
-    const destPosition = p.y - 150;
     if (p.jumpsAvailable != 0) {
-      while (p.y >= destPosition) {
+      if (p.jumpSize != 10) {
         p.y -= p.velocityY;
-        ctx.fillRect(p.x, p.y, p.width, p.height);
       }
       p.canJump = false
       p.jumpsAvailable--;
+      p.jumpSize++;
     }
   }
   static moveDown(p) {

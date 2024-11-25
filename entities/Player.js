@@ -12,6 +12,7 @@ class Player extends Movable {
         this.canJump = true;
         this.velocityX = velocityX;
         this.velocityY = velocityY;
+        this.jumpSize = 0;
     }
 }
 
