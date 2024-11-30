@@ -29,7 +29,7 @@ class Game {
         this.players.forEach(player => {
             this.ctx.fillStyle = player.color;
             this.getPlayerPositions(keyMaps)
-            // player.y = this.applyGravity(player.y)
+            player.y = this.applyGravity(player.y)
 
             // Checking if the player is going outside canvas
             if (player.y <= 0) {
@@ -53,6 +53,7 @@ class Game {
                 if (surface.contains(player.x, player.y, player.width, player.height) && (surface.y - player.height) >= 0) {
                     player.y = surface.y - player.height
                     player.jumpsAvailable = 3;
+                    player.jumpSize = 0;
                 }
                 if (surface.isOnLeft(player.x, player.y, player.width, player.height)) {
                     player.x = surface.x + surface.width
@@ -62,19 +63,19 @@ class Game {
                 }
                 if (surface.hasHitSide(player.x, player.y, player.width, player.height)) {
                     player.jumpsAvailable = 3;
+                    player.jumpSize = 0;
                 }
             }
             this.ctx.fillRect(player.x, player.y, player.width, player.height);
-            if (this.players[0].jumpSize <= 50 && this.players[0].jumpSize != 0) this.players[0].jumpSize++;
+            if (this.players[0].jumpSize <= 25 && this.players[0].jumpSize != 0) this.players[0].jumpSize++;
         });
     }
 
     getPlayerPositions(keyMaps) {
         const keys = Object.keys(keyMaps)
-            if (this.players[0].jumpSize != 0 && this.players[0].jumpSize <=50) {
-            console.log("test", this.players[0].jumpSize)
+            if (this.players[0].jumpSize != 0 && this.players[0].jumpSize <=25) {
             this.players[0].y -= this.players[0].velocityY;
-            console.log("test", this.players[0].jumpSize)
+            console.log("he")
         } else {
         keys.forEach((key) => {
             if (typeof keyMaps[key] === 'function') {
@@ -101,7 +102,7 @@ class Game {
         }
 
         if ((p1.y >= p2.y && p1.y - p1.height <= p2.y)) {
-            console.log("ok")
+           // console.log("ok")
         }
 
         // Vertical Collision

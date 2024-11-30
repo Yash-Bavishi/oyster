@@ -1,6 +1,6 @@
 class Movable {
 
-  static jump(p, ctx) {
+  static jump(p) {
     if (p.jumpsAvailable != 0) {
       if (p.jumpSize != 10) {
         p.y -= p.velocityY;
@@ -10,9 +10,9 @@ class Movable {
       p.jumpSize++;
     }
   }
-  static moveDown(p) {
-    p.y += p.velocityY;
-  }
+  // static moveDown(p) {
+  //   p.y += p.velocityY;
+  // }
 
   static moveLeft(p) {
     p.x -= p.velocityX;

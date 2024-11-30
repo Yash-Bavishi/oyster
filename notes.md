@@ -34,3 +34,10 @@ PROBLEM 1 :- determine the 'w' is pressed (done)
 PROBLEM 2 :- For 100ms increase player position by 2px till player positions doesn't hit 10px (for now) 
   - if it hits 10px stop going up
   - so till timer doesn't hit 500ms the player will keep going up (implement this)
+
+
+  ### Tasks to Do
+  - Jump []
+  - Run and Jump []
+  - Player to player collision []
+  - Player to surface collision bug (press down on surface goes left then down) []
