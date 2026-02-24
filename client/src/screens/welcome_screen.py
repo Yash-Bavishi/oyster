@@ -1,10 +1,15 @@
 import logging
 import pygame
 
+from client.src.screens.iscreen import IScreen
+from client.src.screens.menu_screen import MenuScreen
+
+import client.src.game as game
+
 logger = logging.getLogger(__name__)
 
 
-class WelcomeScreen:
+class WelcomeScreen(IScreen):
     def __init__(self, screen, clock):
         logger.info("Initializing Welcome Screen")
         self.on_screen = True
@@ -14,9 +19,13 @@ class WelcomeScreen:
         self.in_dev_alpha = 0
         self.credit_alpha = 0
         self.fade_speed = 200
-
         self.screen_w, self.screen_h = self.screen.get_size()
         pygame.init()
+
+    @property
+    def name(self):
+        return "Welcome Screen"
+
 
     def start(self):
         while self.on_screen:
@@ -68,4 +77,5 @@ class WelcomeScreen:
             if self.credit_alpha == 255:
                 logging.info("Loading game sequence complete")
                 self.on_screen = False
+                game.Engine.screen_stack.append(MenuScreen(self.screen, self.clock))
             self.clock.tick(60)

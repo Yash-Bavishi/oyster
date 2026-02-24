@@ -37,6 +37,7 @@ def main() -> int:
 
     logging.info("Commencing game")
     Engine().start()
+    Engine().run()
     return 0
 
 
