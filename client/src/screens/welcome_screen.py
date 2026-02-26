@@ -2,8 +2,7 @@ import logging
 import pygame
 
 from client.src.screens.iscreen import IScreen
-from client.src.screens.menu_screen import MenuScreen
-
+from client.src.screens.menu.menu_screen import MenuScreen
 import client.src.game as game
 
 logger = logging.getLogger(__name__)
@@ -18,7 +17,7 @@ class WelcomeScreen(IScreen):
         self.oyster_alpha = 0
         self.in_dev_alpha = 0
         self.credit_alpha = 0
-        self.fade_speed = 200
+        self.fade_speed = 600
         self.screen_w, self.screen_h = self.screen.get_size()
         pygame.init()
 
