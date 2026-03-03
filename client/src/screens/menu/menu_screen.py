@@ -14,12 +14,13 @@ class MenuScreen(IScreen):
         return "Menu Screen"
 
     def __init__(self, screen, clock):
+        pygame.init()
         self.on_screen = True
         self.screen = screen
         self.clock = clock
         self.fade_speed = 200
         self.screen_w, self.screen_h = self.screen.get_size()
-            
+
         self.offline_font = pygame.font.SysFont("playbill", 150)
         self.offline_font_rdr = self.offline_font.render(
             "Play Offline", False, (0, 224, 0)
@@ -29,7 +30,7 @@ class MenuScreen(IScreen):
         self.multiplayer_font_rdr = self.multiplayer_font.render(
             "Play Multiplayer", False, (0, 224, 0)
         )
-        
+
         self.main_font = pygame.font.Font(
             r"C:\Users\Yash\Documents\Projects\Oyster-proto\assets\tiny5.ttf", 400
         )
@@ -48,8 +49,6 @@ class MenuScreen(IScreen):
 
         self.current_selection = self.offline_font_rdr
         self.selected_rect = self.offline_rect
-
-        pygame.init()
 
     def start(self):
         while self.on_screen:
@@ -74,8 +73,11 @@ class MenuScreen(IScreen):
                         if self.current_selection == self.offline_font_rdr:
                             logger.info("Moving to offline screen")
                             self.on_screen = False
-                            game.Engine.screen_stack.append(Offline(self.screen, self.clock))
-            
+                            # pygame.quit()
+                            game.Engine.screen_stack.append(
+                                Offline(self.screen, self.clock)
+                            )
+
             if self.current_selection == self.offline_font_rdr:
                 self.multiplayer_font_rdr.fill((255, 255, 255))
                 self.multiplayer_font_rdr = self.multiplayer_font.render(

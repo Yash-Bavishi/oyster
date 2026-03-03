@@ -25,7 +25,6 @@ class WelcomeScreen(IScreen):
     def name(self):
         return "Welcome Screen"
 
-
     def start(self):
         while self.on_screen:
             dt = self.clock.tick(60) / 1000

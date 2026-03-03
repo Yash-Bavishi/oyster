@@ -1,7 +1,7 @@
 import logging
 import pygame
 from client.src.screens.iscreen import IScreen
-from client.src.screens.menu.map import Map, MapGroup
+from graphics.src.maps.map import Map, MapGroup
 
 logger = logging.getLogger(__name__)
 
