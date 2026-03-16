@@ -38,6 +38,7 @@ class Offline(IScreen):
     def start(self):
         while self.on_screen:
             dt = self.clock.tick(60) / 1000
+            self.screen.fill((0, 0, 0, 0))
             self.main_font = pygame.font.Font(
                 r"C:\Users\Yash\Documents\Projects\Oyster-proto\assets\tiny5.ttf", 400
             )
@@ -48,6 +49,11 @@ class Offline(IScreen):
             self.text_rect = self.main_font_rdr.get_rect(
                 center=(self.screen_w // 2, self.screen_h // 2 - 200)
             )
+
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_x:
+                        self.map.switch_off_overlays()
 
             self.screen.blit(self.main_font_rdr, self.text_rect)
             self.group.draw(self.screen)

@@ -12,5 +12,6 @@ def load(img: str) -> str:
 ASSETS = {
     "zoro": str(path.joinpath("characters/zoro-paint.png")),
     "stars": str(path.joinpath("maps/background-image.jpg")),
-    "ocean": str(path.joinpath("maps/ocean.jpg"))
+    "ocean": str(path.joinpath("maps/ocean.jpg")),
+    "ocena": str(path.joinpath("maps/ocena-platform.jpg")),
 }
