@@ -3,7 +3,7 @@ import pygame
 
 class Surface(pygame.Surface):
     def __init__(self, x, y, w, h, flags) -> None:
-        super.__init__((x, y), flags)
+        super().__init__((w, h), flags)
         self.x = x
         self.y = y
         self.w = w
